@@ -221,9 +221,8 @@ func GetPresetQueryByPolygon(
 	}
 
 	body := ovp.NewOutStatement(ovp.Body)
-	count := ovp.NewOutStatement(ovp.Count)
 
-	stack.Append(union, body, count)
+	stack.Append(union, body)
 
 	if includeMetadata {
 		stack.Append(ovp.NewOutStatement(ovp.Meta))
@@ -272,8 +271,7 @@ func GetPresetQueryByRadius(
 	recurse := ovp.NewRecurseStatement(ovp.RecurseDown)
 	union := ovp.NewUnionStatement("_", way, recurse, relation, recurse)
 	body := ovp.NewOutStatement(ovp.Body)
-	count := ovp.NewOutStatement(ovp.Count)
-	stack := ovp.NewStackStatement(settings, union, body, count)
+	stack := ovp.NewStackStatement(settings, union, body)
 
 	if includeMetadata {
 		stack.Append(ovp.NewOutStatement(ovp.Meta))
@@ -304,8 +302,7 @@ func GetPresetQueryByBoundingBox(
 	recurse := ovp.NewRecurseStatement(ovp.RecurseDown)
 	union := ovp.NewUnionStatement("_", way, recurse, relation, recurse)
 	body := ovp.NewOutStatement(ovp.Body)
-	count := ovp.NewOutStatement(ovp.Count)
-	stack := ovp.NewStackStatement(settings, union, body, count)
+	stack := ovp.NewStackStatement(settings, union, body)
 
 	if includeMetadata {
 		stack.Append(ovp.NewOutStatement(ovp.Meta))
